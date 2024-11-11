@@ -269,8 +269,8 @@ def PreTrainedInception3d(include_top=True,
         x = Reshape((num_frames_remaining, classes))(x)
 
         # logits (raw scores for each class)
-        x = Lambda(lambda x: K.mean(x, axis=1, keepdims=False),
-                   output_shape=lambda s: (s[0], s[2]))(x)
+        x = Lambda(lambda x: tf.reduce_mean(x, axis=1, keepdims=False),
+                output_shape=lambda s: (s[0], s[2]))(x)
 
         if not endpoint_logit:
             x = Activation('softmax', name='prediction')(x)

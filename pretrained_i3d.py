@@ -296,8 +296,8 @@ def TopLayer(input_shape, classes, dropout_prob):
                   use_bias=True, use_activation_fn=False, use_bn=False, name='Conv3d_6a_1x1')
     num_frames_remaining = int(x.shape[1])
     x = Reshape((num_frames_remaining, classes))(x)
-    x = Lambda(lambda x: K.mean(x, axis=1, keepdims=False),
-               output_shape=lambda s: (s[0], s[2]))(x)
+    x = Lambda(lambda x: tf.reduce_mean(x, axis=1, keepdims=False),
+            output_shape=lambda s: (s[0], s[2]))(x)
     x = Activation('softmax', name='prediction')(x)
     final_model = Model(inputs=inputs, outputs=x, name="i3d_top")
     return final_model

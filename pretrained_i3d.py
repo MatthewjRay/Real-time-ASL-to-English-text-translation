@@ -10,7 +10,7 @@ from keras.layers import AveragePooling3D
 from keras.layers import Dropout
 from keras.layers import Reshape
 from keras.layers import Lambda
-from keras.utils.data_utils import get_file
+from tensorflow.keras.utils import get_file
 from keras import backend as K
 from tensorflow.python.ops.distributions.uniform import Uniform
 
